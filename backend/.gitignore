@@ -1,0 +1,17 @@
+# Virtual Environment
+.venv/
+
+# Environment Files
+.env
+.env.test
+
+# Cache
+__pycache__/
+*.py[cod]
+
+# Testing
+.pytest_cache/
+.coverage
+
+# Logs
+*.log

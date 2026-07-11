@@ -1,0 +1,54 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+backend/.venv/
+venv/
+env/
+
+# Environment Variables
+backend/.env
+backend/.env.test
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type Checking
+.mypy_cache/
+
+# Logs
+*.log
+
+# Alembic cache
+backend/alembic/__pycache__/
+
+# Python build
+build/
+dist/
+*.egg-info/
+
+# SQLite (if used)
+*.db
+
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# npm
+frontend/npm-debug.log*
+frontend/yarn-error.log*
+
+# React Environment
+frontend/.env
