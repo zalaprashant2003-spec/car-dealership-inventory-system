@@ -9,8 +9,8 @@ from app.models.base import BaseModel
 
 class UserRole(str, Enum):
     ADMIN = "ADMIN"
-    MANAGER = "MANAGER"
     SALESPERSON = "SALESPERSON"
+    CUSTOMER = "CUSTOMER"
 
 
 class User(BaseModel):
@@ -36,5 +36,5 @@ class User(BaseModel):
     role: Mapped[UserRole] = mapped_column(
         SqlEnum(UserRole),
         nullable=False,
-        default=UserRole.SALESPERSON,
+        default=UserRole.CUSTOMER,
     )
