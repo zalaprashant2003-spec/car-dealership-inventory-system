@@ -7,7 +7,7 @@ Restock is restricted to ADMIN users only, per the specification.
 
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends
 
 from app.core.security import get_current_user, require_roles
 from app.dependencies import get_vehicle_service

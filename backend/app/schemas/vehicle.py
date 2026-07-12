@@ -17,6 +17,7 @@ class VehicleCreate(BaseModel):
     make: str = Field(min_length=1, max_length=50, description="Vehicle manufacturer")
     model: str = Field(min_length=1, max_length=100, description="Vehicle model name")
     category: str = Field(min_length=1, max_length=50, description="Vehicle category (e.g. Sedan, SUV)")
+    image_url: Optional[str] = Field(default=None, max_length=300, description="Optional image URL for the vehicle")
     price: Decimal = Field(gt=0, lt=1000000000, max_digits=12, decimal_places=2, description="Vehicle price (must be positive)")
     quantity: int = Field(default=0, ge=0, description="Initial stock quantity")
 
@@ -27,6 +28,7 @@ class VehicleUpdate(BaseModel):
     make: Optional[str] = Field(default=None, min_length=1, max_length=50)
     model: Optional[str] = Field(default=None, min_length=1, max_length=100)
     category: Optional[str] = Field(default=None, min_length=1, max_length=50)
+    image_url: Optional[str] = Field(default=None, max_length=300)
     price: Optional[Decimal] = Field(default=None, gt=0, lt=1000000000, max_digits=12, decimal_places=2)
     quantity: Optional[int] = Field(default=None, ge=0)
 

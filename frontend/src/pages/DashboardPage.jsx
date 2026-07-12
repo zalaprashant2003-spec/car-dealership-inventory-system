@@ -20,6 +20,44 @@ function DashboardPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const normalizeImageUrl = (url) => {
+    if (!url || typeof url !== 'string') return null;
+    const trimmed = url.trim();
+    if (!trimmed) return null;
+
+    if (/^https?:\/\//i.test(trimmed)) {
+      return trimmed;
+    }
+
+    const segments = trimmed.split('/').map((segment) => encodeURIComponent(segment));
+    const encodedPath = segments.join('/');
+    return trimmed.startsWith('/')
+      ? encodedPath
+      : new URL(encodedPath, window.location.origin).href;
+  };
+
+  const vehicleImages = {
+    "Ford Mustang": "public/images/Ford Mustang.jpg",
+    "Toyota Camry": "public/images/Toyota Camry.jpg",
+    "Toyota Fortuner": "public/images/toyota-fortuner.jpg",
+    "Mahindra Thar ROXX": "public/images/mahindra-thar-roxx.jpg",
+    "BMW X5": "public/images/bmw-x5.jpg",
+  };
+const getVehicleImageUrl = (vehicle) => {
+  // First check if backend provides an image URL
+  const explicit = normalizeImageUrl(vehicle.image_url ?? vehicle.imageUrl ?? "");
+  if (explicit) return explicit;
+
+  // Then check local image mapping
+  const key = `${vehicle.make} ${vehicle.model}`;
+  if (vehicleImages[key]) {
+    return vehicleImages[key];
+  }
+
+  // Final fallback image
+  return "/images/default-car.jpg";
+};
+
   // Show success message passed from BillingPage after a confirmed purchase
   useEffect(() => {
     if (location.state?.successMessage) {
@@ -225,6 +263,14 @@ function DashboardPage() {
                       ) : (
                         <span className="status-badge success">In Stock</span>
                       )}
+                    </div>
+
+                    <div className="vehicle-image-wrapper">
+                      <img
+                        src={getVehicleImageUrl(vehicle)}
+                        alt={`${vehicle.make} ${vehicle.model}`}
+                        loading="lazy"
+                      />
                     </div>
 
                     <h3 className="vehicle-title">

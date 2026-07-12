@@ -9,7 +9,7 @@ to keep the API layer thin.
 from decimal import Decimal
 
 from fastapi import HTTPException, status
-from sqlalchemy.orm import Session
+
 
 from app.models.vehicle import Vehicle
 from app.repositories.vehicle_repository import VehicleRepository
@@ -28,6 +28,7 @@ class VehicleService:
             make=vehicle_data.make,
             model=vehicle_data.model,
             category=vehicle_data.category,
+            image_url=vehicle_data.image_url,
             price=vehicle_data.price,
             quantity=vehicle_data.quantity,
         )

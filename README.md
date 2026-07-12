@@ -6,6 +6,26 @@ This project is being developed using a clean layered architecture following ind
 
 ---
 
+# 📸 Screenshots
+
+| Login | Register |
+|-------|-----------|
+| ![](frontend/public/screenshots/login.png) | ![](frontend/public/screenshots/register.png) |
+
+| Admin Dashboard | Customer Dashboard |
+|-------|-----------|
+| ![](frontend/public/screenshots/admin-dashboard.png) | ![](frontend/public/screenshots/customer-dashboard.png) |
+
+| Vehicle Inventory(Admin) | Add Vehicle(Sales Person) |
+|------------------|-------------|
+| ![](frontend/public/screenshots/manage-vehicle-admin.png) | ![](frontend/public/screenshots/manage-by-salesperson.png) |
+
+| Advanced Search  | Invoice & Billing |
+|------------------|-----------------|
+| ![](frontend/public/screenshots/search.png) | ![](frontend/public/screenshots/billing.png) |
+
+---
+
 ### 📅 Planned
 
 - User Registration
@@ -69,6 +89,9 @@ car-dealership-inventory-system/
 │
 ├── frontend/
 │   ├── public/
+│   │   ├── images/
+│   │   └── screenshots/
+│   │
 │   ├── src/
 │   │   ├── pages/
 │   │   ├── App.jsx
@@ -76,6 +99,7 @@ car-dealership-inventory-system/
 │   │   ├── api.js
 │   │   ├── index.css
 │   │   └── main.jsx
+│   │
 │   ├── package.json
 │   └── vite.config.js
 │
@@ -167,6 +191,29 @@ pip install -r requirements.txt
 
 Create a `.env` file using `.env.example`.
 
+Example:
+
+```env
+DATABASE_URL=postgresql://username:password@localhost:5432/car_dealership_db
+JWT_SECRET_KEY=your-secret-key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+Generate a secure JWT secret key using:
+
+```bash
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+Copy the generated value and replace `your-secret-key` in the `.env` file.
+
+Example:
+
+```env
+JWT_SECRET_KEY=your-generated-secret-key
+```
+
 ---
 
 ## 6. Run Database Migrations
@@ -204,6 +251,14 @@ To run tests:
 ```bash
 pytest
 ```
+
+# ✅ Test Results
+
+## Test Suite
+
+![Pytest Results](frontend/public/screenshots/test.png)
+
+---
 
 ---
 

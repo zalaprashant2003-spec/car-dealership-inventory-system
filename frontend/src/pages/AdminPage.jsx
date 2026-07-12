@@ -6,7 +6,7 @@ import { useAuth } from '../AuthContext';
 
 function AdminPage() {
   const [vehicles, setVehicles] = useState([]);
-  const [form, setForm] = useState({ make: '', model: '', category: '', price: '', quantity: 0 });
+  const [form, setForm] = useState({ make: '', model: '', category: '', image_url: '', price: '', quantity: 0 });
   const [editingVehicle, setEditingVehicle] = useState(null); // stores vehicle being updated
   const [restockVehicleId, setRestockVehicleId] = useState(null); // stores vehicle ID being restocked
   const [restockQuantity, setRestockQuantity] = useState(1);
@@ -40,7 +40,7 @@ function AdminPage() {
     setFeedback({ type: '', message: '' });
     try {
       await api.post('/api/vehicles', { ...form, price: String(form.price) });
-      setForm({ make: '', model: '', category: '', price: '', quantity: 0 });
+      setForm({ make: '', model: '', category: '', image_url: '', price: '', quantity: 0 });
       setFeedback({ type: 'success', message: 'Vehicle added successfully to the catalog!' });
       loadVehicles();
     } catch (error) {
@@ -60,6 +60,7 @@ function AdminPage() {
         make: editingVehicle.make,
         model: editingVehicle.model,
         category: editingVehicle.category,
+        image_url: editingVehicle.image_url,
         price: String(editingVehicle.price),
         quantity: editingVehicle.quantity,
       });
@@ -189,6 +190,16 @@ function AdminPage() {
                   />
                 </div>
                 <div className="form-group">
+                  <label htmlFor="edit-image-url">Image URL</label>
+                  <input
+                    id="edit-image-url"
+                    className="input"
+                    placeholder="e.g. /images/ford-mustang.jpg or https://..."
+                    value={editingVehicle.image_url || ''}
+                    onChange={(e) => setEditingVehicle({ ...editingVehicle, image_url: e.target.value })}
+                  />
+                </div>
+                <div className="form-group">
                   <label htmlFor="edit-price">Price (₹)</label>
                   <input
                     id="edit-price"
@@ -280,6 +291,16 @@ function AdminPage() {
                       value={form.category}
                       onChange={(e) => setForm({ ...form, category: e.target.value })}
                       required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="add-image-url">Image URL</label>
+                    <input
+                      id="add-image-url"
+                      className="input"
+                      placeholder="e.g. /images/ford-mustang.jpg or https://..."
+                      value={form.image_url}
+                      onChange={(e) => setForm({ ...form, image_url: e.target.value })}
                     />
                   </div>
                   <div className="form-group">
